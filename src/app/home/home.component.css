@@ -1,0 +1,9 @@
+.card {
+    border: 1px solid #ddd;
+  }
+  
+  .badge {
+    font-size: 0.9em;
+  }
+  .mycolname{color: green !important;}
+  .mycolnameOrg{color: orange !important;}

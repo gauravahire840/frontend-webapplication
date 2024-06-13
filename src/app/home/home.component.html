@@ -1,0 +1,111 @@
+<div class="container mt-4">
+  
+  <h2 class="mb-3">Task List</h2>
+  
+  <!-- Add Task Button -->
+  <!-- <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addTaskModal">
+    Add Task
+  </button> -->
+  <!-- <button type="button" class="btn btn-primary mb-3" (click)="openAddTaskModal()">
+    Add Task
+  </button> -->
+  <button type="button" class="btn btn-primary mb-3" routerLink="/add-task">
+    Add Task
+  </button>
+
+  <!-- Task List Table (for larger screens) -->
+  <div class="d-none d-md-block">
+    <table class="table table-striped">
+      <!-- Table Header -->
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Status</th>
+          <th scope="col">Manage</th>
+        </tr>
+      </thead>
+      <!-- Table Body -->
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td>{{ task.title }}</td>
+          <td>{{ task.description }}</td>
+          <td class="mycolname" *ngIf="task.status=='true'">
+            Completed
+          </td>
+          <td class="mycolnameOrg" *ngIf="task.status=='false'">
+            In Progress
+          </td>
+
+          <td>
+            <button type="button" class="btn btn-primary mb-2" (click)="editmytask(task.id,task.title,task.description,task.status)">
+              Edit
+            </button> &nbsp;&nbsp;
+
+            <button type="button" class="btn btn-primary mb-2" (click)="delmytask(task.id)">
+              Delete
+            </button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Task List Cards (for smaller screens) -->
+  <div class="d-block d-md-none">
+    <div *ngFor="let task of tasks" class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ task.title }}</h5>
+        <p class="card-text">{{ task.description }}</p>
+        <p class="card-text mycolname" *ngIf="task.status">
+          <strong>Completed</strong>
+        </p>
+        <p class="card-text mycolnameOrg" *ngIf="!task.status">
+          <strong>In Progress</strong>
+        </p>
+        <p class="card-text"><span>X</span></p>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- Add Task Modal -->
+  <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Add Task Form -->
+          <form>
+            <div class="form-group">
+              <label for="taskTitle">Title</label>
+              <input type="text" class="form-control" id="taskTitle" placeholder="Enter task title">
+            </div>
+            <div class="form-group">
+              <label for="taskDescription">Description</label>
+              <textarea class="form-control" id="taskDescription" rows="3" placeholder="Enter task description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="taskStatus">Status</label>
+              <select class="form-control" id="taskStatus">
+                <option value="completed">Completed</option>
+                <option value="inprogress">In Progress</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Add Task</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

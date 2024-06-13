@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <div class="topheadermenus">
+    <h5 routerLink="/home"><- Back to Home</h5>
+  </div>
+    <h2>Add Task</h2>
+    <form [formGroup]="addTaskForm" (ngSubmit)="onSubmit(addTaskForm.value)" enctype="application/x-www-form-urlencoded">
+        <div class="mb-3" style="display: none;">
+            <label for="idval" class="form-label">ID</label>
+            <input id="idval" class="form-control" formControlName="idval" placeholder="Enter ID">
+            
+          </div>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input id="title" class="form-control" formControlName="title" placeholder="Enter title">
+        <!-- <div *ngIf="addTaskForm.controls.title.invalid && addTaskForm.controls.title.touched" class="text-danger">
+          Title is required.
+        </div> -->
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea id="description" class="form-control" formControlName="description" rows="3" placeholder="Enter description"></textarea>
+        <!-- <div *ngIf="addTaskForm.controls.description.invalid && addTaskForm.controls.description.touched" class="text-danger">
+          Description is required.
+        </div> -->
+      </div>
+      <div class="form-check mb-3">
+        <input type="checkbox" id="status" class="form-check-input" formControlName="status">
+        <label for="status" class="form-check-label">Status (Complete)</label>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="addTaskForm.invalid">Add Task</button>
+    </form>
+  </div>
